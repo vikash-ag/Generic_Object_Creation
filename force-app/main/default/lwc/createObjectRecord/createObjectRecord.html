@@ -1,0 +1,49 @@
+<!-- 
+    Component Name  :   createObjectRecord
+    LastModified BY :   26th Sept 2020
+    Description     :   
+ -->
+<template>
+    Create Object Record Component
+    <div class="slds-box slds-theme_default slds-var-m-around_x-small">
+
+        <!-- <div id="error" if:true={isError}>
+            {errorMsg}
+        </div> -->
+
+        <lightning-card  title="Create New Record">
+            <div class="slds-var-p-horizontal_small">
+                <lightning-radio-group  name = "radioGroup"
+                                        type = "radio"
+                                        label = "Select Object"
+                                        class = "slds-var-p-bottom_large"
+                                        options = {lstObjects}
+                                        value = {selectedObject}
+                                        onchange = {handleObjSelectionChange}
+                                        required>
+                </lightning-radio-group>
+                
+                <lightning-button   variant="brand" label="Select this object"
+                                    onclick={handleObjSelection}
+                                    class="slds-var-p-top_small">
+                </lightning-button>
+            </div>
+        </lightning-card>
+
+        <div id="newObjCreateDiv" class="slds-var-p-top_small" if:true={isShowNewObjDiv}>
+            <lightning-card title={getNewObjCardHeader} class="slds-var-p-top_x-large">
+                <div class="slds-var-p-around_medium">
+                    <lightning-record-form  object-api-name={selectedObject}
+                                            mode="edit"
+                                            layout-type="Full"
+                                            onsubmit={handleNewRecSubmit}
+                                            onsuccess={handleNewRecSuccess}
+                                            onerror={handleNewRecError}
+                                            >
+                    </lightning-record-form>
+                    <!-- fields={fields} -->
+                </div>
+            </lightning-card>
+        </div>
+    </div>
+</template>
